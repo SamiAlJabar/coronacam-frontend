@@ -48,7 +48,7 @@
           </v-flex>
           <v-spacer></v-spacer>
           <v-menu transition="slide-y-transition" offset-y left>
-            <template v-slot:activator="{ on }">
+            <!-- <template v-slot:activator="{ on }">
               <v-toolbar-items>
                 <v-icon
                   v-on="on"
@@ -57,7 +57,7 @@
                   class="icon-hover-scoped"
                 >notifications_none</v-icon>
               </v-toolbar-items>
-            </template>
+            </template> -->
             <v-list style="background-color: white !important">
               <v-list-tile style="cursor: pointer" to="/home">
                 <v-list-tile-title>
@@ -109,14 +109,14 @@
               </v-toolbar-items>
             </template>
             <v-list style="background-color: white !important">
-              <v-list-tile style="cursor: pointer" to="/">
+              <!-- <v-list-tile style="cursor: pointer" to="/">
                 <v-list-tile-title>
                   <v-icon class="font-sizes">settings</v-icon>
                   <label
                     style="color: var(--secondary)"
                   >Settings</label>
                 </v-list-tile-title>
-              </v-list-tile>
+              </v-list-tile> -->
               <v-list-tile style="cursor: pointer" to="/">
                 <v-list-tile-title>
                   <v-icon class="font-sizes">power_settings_new</v-icon>
@@ -182,7 +182,8 @@ export default {
     userInfo: [],
     menuItems: [
       { title: "DASHBOARD", link: "dashboard", avatar: "dashboard" },
-      { title: "REPORT", link: "report", avatar: "query_stats" }
+      { title: "REPORT", link: "report", avatar: "query_stats" },
+      { title: "PHONE ALERT", link: "phone", avatar: "perm_phone_msg" }
     ]
   }),
   methods: {

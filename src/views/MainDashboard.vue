@@ -169,9 +169,6 @@ export default {
     };
   },
   methods: {
-    closeDrawer: function(value) {
-      this.drawerBalance = false;
-    },
     async getViolationData() {
       try {
           let responsess = await axios_py.get('/getViolations')

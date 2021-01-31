@@ -7,6 +7,7 @@ import Dashboard from "./components/Dashboard.vue";
 import MainDashboard from "./views/MainDashboard.vue";
 import HomeScreen from "./views/HomeScreen.vue";
 import Report from "./views/Report.vue";
+import PhoneAlert from "./views/PhoneAlert.vue";
 
 
 Vue.use(Router);
@@ -30,6 +31,12 @@ export default new Router({
           name: "REPORT",
           component: Report,
         },
+        {
+          path: "/phone",
+          name: "PHONE ALERT",
+          component: PhoneAlert,
+        },
+        
       ]
     },
     {

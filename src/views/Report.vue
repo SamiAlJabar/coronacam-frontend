@@ -13,12 +13,20 @@
               <v-flex md12 sm12 xs12>
                 <v-card flat style="padding: 10px;">
                   <h3 class="custom-title" style="color: var(--primary); padding: 8px; margin: 5px;">
-                    <v-icon style="color: var(--primaryButton)">bar_chart</v-icon>STATISTICS<v-icon style="color: var(--primaryButton)">bar_chart</v-icon>
+                    <v-icon style="color: var(--primaryButton)">bar_chart</v-icon>Average Violation on every 10 seconds
+                  </h3>
+                  <div class="procedures small">
+                    <line-chart v-if="dynamicChange" :chartdata="lineChartdata" ></line-chart>
+                  </div>
+                </v-card>
+                <!-- <v-card flat style="padding: 10px;">
+                  <h3 class="custom-title" style="color: var(--primary); padding: 8px; margin: 5px;">
+                    <v-icon style="color: var(--primaryButton)">bar_chart</v-icon>Other Statistics<v-icon style="color: var(--primaryButton)">bar_chart</v-icon>
                   </h3>
                   <div class="procedures small">
                     <bar-chart :chartdata="chartdata" ></bar-chart>
                   </div>
-                </v-card>
+                </v-card> -->
               </v-flex>
             </v-layout>
           </div>
@@ -30,22 +38,24 @@
 
 <script>
 import BarChart  from '../BarChart.js'
+import LineChart  from '../LineChart.js'
 import axios_py from "../axios_instance_python.js";
 
 export default {
   components: {
-    BarChart
+    BarChart,
+    LineChart
   },
   data() {
     return {
+      dynamicChange: false,
       chartdata: null,
-      dbData: [
-        {
-          month: "January"
-
-        }
-      ],
+      lineChartdata: null,
       dataLoaded: false,
+      counter: 0,
+      labels: [],
+      dataSD: [],
+      dataMK: [],
       violationData: {
         sdViolation: 1,
         maskViolation: 1,
@@ -56,22 +66,68 @@ export default {
   },
   methods: {
     async getViolationData() {
-      try {
-          let responsess = await axios_py.get('/getViolations')
-          let detectChange = JSON.parse(responsess.data.data);
-          this.violationData.sdViolation = detectChange.violations;
-          return;
-          if(detectChange && (detectChange.violations - this.currentChange > 7 || this.currentChange - detectChange.violations > 7)) {
-            this.violationData.sdViolation = this.violationData.sdViolation + 1;
-            this.currentChange = detectChange.violations;
-          }
-      } catch(e) {
-        console.log("errorooror: ", e);
+      this.violationData = {
+        average_violations_masks: Math.floor((Math.random() * 10) + 1),
+        average_violations_sd: Math.floor((Math.random() * 10) + 1),
+        current_violations_masks: Math.floor((Math.random() * 10) + 1),
+        current_violations_sd: Math.floor((Math.random() * 10) + 1)
       }
+      // try {
+      //     let responsess = await axios_py.get('/getViolations')
+      //     let detectChange = JSON.parse(responsess.data.data);
+      //     this.violationData.sdViolation = detectChange.violations;
+      //     return;
+      //     if(detectChange && (detectChange.violations - this.currentChange > 7 || this.currentChange - detectChange.violations > 7)) {
+      //       this.violationData.sdViolation = this.violationData.sdViolation + 1;
+      //       this.currentChange = detectChange.violations;
+      //     }
+      // } catch(e) {
+      //   console.log("errorooror: ", e);
+      // }
+      this.counter += 10;
+      this.dataSD.push(this.violationData.average_violations_sd);
+      this.dataMK.push(this.violationData.average_violations_masks);
+      this.labels.push(this.counter + "s");
+      this.lineChartdata = {
+        labels: this.labels,
+        datasets: [
+          {
+            label: 'Average Social Distancing Violation',
+            backgroundColor: '#4ee352',
+            data: this.dataSD
+          },
+          {
+            label: 'Average Mask Violation',
+            backgroundColor: '#272784',
+            data: this.dataMK
+          },
+        ]
+      }
+      console.log(this.lineChartdata);
     },
   },
   async mounted() {
     this.dataLoaded = true;
+    setInterval(async function () {
+      this.dynamicChange = false;
+      await this.getViolationData();
+      this.dynamicChange = true;
+    }.bind(this), 2000); 
+    // this.lineChartdata = {
+    //   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    //   datasets: [
+    //     {
+    //       label: 'Data One',
+    //       backgroundColor: '#4ee352',
+    //       data: [40, 39, 10, 40, 39, 80, 40]
+    //     },
+    //     {
+    //       label: 'Data Two',
+    //       backgroundColor: '#272784',
+    //       data: [12, 22, 42, 12, 32, 12, 8]
+    //     }
+    //   ]
+    // };
     this.chartdata = {
       labels: ['January'],
       datasets: [
