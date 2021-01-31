@@ -17,57 +17,14 @@
                     <v-flex md9 sm9 xs9>
                       <div class="empty-box">
                         <h3>
-                          SD Violation
+                          Social Distancing Current Violations
                           <br>
-                          <span class="a">{{this.violationData.sdViolation}}</span>
+                          <span class="a">{{this.violationData.current_violations_sd}}</span>
                         </h3>
                       </div>
                     </v-flex>
                   </v-layout>
-                  <v-layout wrap class="lower-box">
-                    <v-layout wrap class="lower-box">
-                      <v-flex
-                        md12
-                        style="height: 100%; padding-left: 10px; padding-right: 10px; padding-top: 6px;"
-                      >
-                        <v-btn
-                          style="font-size: 12px !important; min-width: 10px; width: 100%"
-                          @click="drawerBalance = !drawerBalance;"
-                        >VIEW DETAILS</v-btn>
-                      </v-flex>
-                    </v-layout>
-                  </v-layout>
-                </v-card>
-              </v-flex>
-              <v-flex md3 sm12 xs12 class="total-box">
-                <v-card class="card-height border_radius">
-                  <v-layout wrap>
-                    <v-flex md3 sm3 xs3>
-                      <div class="icon-box floating">
-                        <v-icon style="color: var(--primaryButton) !important">masks</v-icon>
-                      </div>
-                    </v-flex>
-                    <v-flex md9 sm9 xs9>
-                      <div class="empty-box">
-                        <h3>
-                          Mask Violation
-                          <br>
-                          <span class="a">12 / day</span>
-                        </h3>
-                      </div>
-                    </v-flex>
-                  </v-layout>
-                  <v-layout wrap class="lower-box">
-                    <v-flex
-                      md12
-                      style="height: 100%; padding-left: 10px; padding-right: 10px; padding-top: 6px;"
-                    >
-                      <v-btn
-                        style="font-size: 12px !important; min-width: 10px; width: 100%"
-                        @click="drawerBalance = !drawerBalance;"
-                      >VIEW DETAILS</v-btn>
-                      </v-flex>
-                  </v-layout>
+                  
                 </v-card>
               </v-flex>
               <v-flex md3 sm12 xs12 class="total-box">
@@ -81,24 +38,14 @@
                     <v-flex md9 sm9 xs9>
                       <div class="empty-box">
                         <h3>
-                          Violation Rate
+                          Average Social Distancing Violations 
                           <br>
-                          <span class="a">12 / day</span>
+                          <span class="a">{{this.violationData.average_violations_sd.toFixed(2)}}</span>
                         </h3>
                       </div>
                     </v-flex>
                   </v-layout>
-                  <v-layout wrap class="lower-box">
-                    <v-flex
-                      md12
-                      style="height: 100%; padding-left: 10px; padding-right: 10px; padding-top: 6px;"
-                    >
-                      <v-btn
-                        style="font-size: 12px !important; min-width: 10px; width: 100%"
-                        @click="drawerBalance = !drawerBalance;"
-                      >VIEW DETAILS</v-btn>
-                      </v-flex>
-                  </v-layout>
+                  
                 </v-card>
               </v-flex>
               <v-flex md3 sm12 xs12 class="total-box">
@@ -106,30 +53,41 @@
                   <v-layout wrap>
                     <v-flex md3 sm3 xs3>
                       <div class="icon-box floating">
-                        <v-icon style="color: var(--primaryButton) !important">calendar_today</v-icon>
+                        <v-icon style="color: var(--primaryButton) !important">masks</v-icon>
                       </div>
                     </v-flex>
                     <v-flex md9 sm9 xs9>
                       <div class="empty-box">
                         <h3>
-                          Monthly Rate
+                          Mask Current Violation 
                           <br>
-                          <span class="a">12 / day</span>
+                          <span class="a">{{this.violationData.current_violations_masks}}</span>
                         </h3>
                       </div>
                     </v-flex>
                   </v-layout>
-                  <v-layout wrap class="lower-box">
-                    <v-flex
-                      md12
-                      style="height: 100%; padding-left: 10px; padding-right: 10px; padding-top: 6px;"
-                    >
-                      <v-btn
-                        style="font-size: 12px !important; min-width: 10px; width: 100%"
-                        @click="drawerBalance = !drawerBalance;"
-                      >VIEW DETAILS</v-btn>
-                      </v-flex>
+                  
+                </v-card>
+              </v-flex>
+              <v-flex md3 sm12 xs12 class="total-box">
+                <v-card class="card-height border_radius">
+                  <v-layout wrap>
+                    <v-flex md3 sm3 xs3>
+                      <div class="icon-box floating">
+                        <v-icon style="color: var(--primaryButton) !important">coronavirus</v-icon>
+                      </div>
+                    </v-flex>
+                    <v-flex md9 sm9 xs9>
+                      <div class="empty-box">
+                        <h3>
+                         Mask Average Violation 
+                          <br>
+                          <span class="a">{{this.violationData.average_violations_masks.toFixed(2)}}</span>
+                        </h3>
+                      </div>
+                    </v-flex>
                   </v-layout>
+                  
                 </v-card>
               </v-flex>
               <v-flex md12 sm12 xs12 class="total-box">
@@ -141,8 +99,13 @@
                         <v-icon class="color-change-animation" style="margin-bottom: 2px; color: var(--error); margin-right: 4px;">fiber_manual_record</v-icon>STORE CAMERA
                       </h3>
                     </v-flex>
-                    <v-flex md12 sm12 xs12>
-                      <iframe md12 style="width: 454px; height: 260px" src="http://localhost:5000/video_social_distance"></iframe>
+
+                    <v-flex class="wrap_video" md6 sm12 xs12>
+
+                      <iframe md12 src="http://localhost:5000/video_social_distance"></iframe>
+                    </v-flex>
+                    <v-flex class="wrap_video" md6 sm12 xs12>
+                      <iframe md12 src="http://localhost:5000/video_mask"></iframe>
                     </v-flex>
                   </v-layout>
                 </v-card>
@@ -212,8 +175,7 @@ export default {
     async getViolationData() {
       try {
           let responsess = await axios_py.get('/getViolations')
-          let detectChange = JSON.parse(responsess.data.data);
-          this.violationData.sdViolation = detectChange.violations;
+          this.violationData = JSON.parse(responsess.data.data);
           return;
           if(detectChange && (detectChange.violations - this.currentChange > 7 || this.currentChange - detectChange.violations > 7)) {
             this.violationData.sdViolation = this.violationData.sdViolation + 1;
@@ -228,13 +190,26 @@ export default {
     this.dataLoaded = true;
     setInterval(async function () {
       await this.getViolationData();
-    }.bind(this), 5000); 
+    }.bind(this), 100); 
   }
 };
 </script>
 <style lang="scss" scoped>
+.wrap_video {
+    width: 600px; 
+    height: 600px;
+    overflow: hidden;
+}
+iframe {
+    width: 100% !important; //76.92% !important;
+    height: 100% !important;//76.92% !important;
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
 .card-height {
-  height: 180px !important;
+  height: 100px !important;
 }
 .empty-box {
   margin: 10px;

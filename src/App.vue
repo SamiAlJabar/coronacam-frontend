@@ -264,7 +264,7 @@ table.v-table thead th {
 }
 .empty-box {
   margin: 10px;
-  height: 120px;
+  height: 70px;
   text-align: right !important;
   float: right;
 }
@@ -301,7 +301,7 @@ table.v-table thead th {
   border-radius: 5px;
 }
 .card-height {
-  height: 195px;
+  height: 100px;
 }
 .total-box:hover {
   .icon-box {

@@ -100,7 +100,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .card-height {
-  height: 180px !important;
+  height: 100px !important;
 }
 .empty-box {
   margin: 10px;
