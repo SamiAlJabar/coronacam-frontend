@@ -210,7 +210,7 @@ export default {
     this.dataLoaded = true;
     setInterval(async function () {
       await this.getViolationData();
-    }.bind(this), 1000); 
+    }.bind(this), 100); 
   }
 };
 </script>

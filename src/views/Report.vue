@@ -76,8 +76,8 @@ export default {
            let responsess = await axios_py.get('/getViolations')
            this.violationData= JSON.parse(responsess.data.data);
            this.counter += 10;
-          this.dataSD.push(this.violationData.average_violations_sd);
-          this.dataMK.push(this.violationData.average_violations_masks);
+          this.dataSD.push(this.violationData.current_violations_sd);
+          this.dataMK.push(this.violationData.current_violations_masks);
           this.labels.push(this.counter + "s");
           this.lineChartdata = {
             labels: this.labels,
