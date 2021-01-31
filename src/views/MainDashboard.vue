@@ -102,11 +102,34 @@
 
                     <v-flex class="wrap_video" md6 sm12 xs12>
 
-                      <iframe md12 src="http://localhost:5000/video_social_distance"></iframe>
+                      <iframe md12 src="http://142.93.86.205/video_sd1"></iframe>
                     </v-flex>
                     <v-flex class="wrap_video" md6 sm12 xs12>
-                      <iframe md12 src="http://localhost:5000/video_mask"></iframe>
+                      <iframe md12 src="http://142.93.86.205/video_mask1"></iframe>
                     </v-flex>
+
+                    <v-flex class="wrap_video" md6 sm12 xs12>
+
+                      <iframe md12 src="http://142.93.86.205/video_sd3"></iframe>
+                    </v-flex>
+
+                    <v-flex class="wrap_video" md6 sm12 xs12>
+
+                      <iframe md12 src="http://142.93.86.205/video_mask3"></iframe>
+                    </v-flex>
+                  
+                   <v-flex class="wrap_video" md6 sm12 xs12>
+
+                      <iframe md12 src="http://142.93.86.205/video_sd2"></iframe>
+                    </v-flex>
+
+                    <v-flex class="wrap_video" md6 sm12 xs12>
+
+                      <iframe md12 src="http://142.93.86.205/video_mask2"></iframe>
+                    </v-flex>
+
+
+
                   </v-layout>
                 </v-card>
               </v-flex>
@@ -187,7 +210,7 @@ export default {
     this.dataLoaded = true;
     setInterval(async function () {
       await this.getViolationData();
-    }.bind(this), 100); 
+    }.bind(this), 1000); 
   }
 };
 </script>
@@ -200,8 +223,8 @@ export default {
 iframe {
     width: 100% !important; //76.92% !important;
     height: 100% !important;//76.92% !important;
-    -webkit-transform: scale(1.3);
-    transform: scale(1.3);
+    -webkit-transform: scale(1.0);
+    transform: scale(1.6);
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
 }

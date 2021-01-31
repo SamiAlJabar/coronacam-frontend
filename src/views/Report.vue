@@ -66,44 +66,40 @@ export default {
   },
   methods: {
     async getViolationData() {
-      this.violationData = {
-        average_violations_masks: Math.floor((Math.random() * 10) + 1),
-        average_violations_sd: Math.floor((Math.random() * 10) + 1),
-        current_violations_masks: Math.floor((Math.random() * 10) + 1),
-        current_violations_sd: Math.floor((Math.random() * 10) + 1)
-      }
-      // try {
-      //     let responsess = await axios_py.get('/getViolations')
-      //     let detectChange = JSON.parse(responsess.data.data);
-      //     this.violationData.sdViolation = detectChange.violations;
-      //     return;
-      //     if(detectChange && (detectChange.violations - this.currentChange > 7 || this.currentChange - detectChange.violations > 7)) {
-      //       this.violationData.sdViolation = this.violationData.sdViolation + 1;
-      //       this.currentChange = detectChange.violations;
-      //     }
-      // } catch(e) {
-      //   console.log("errorooror: ", e);
-      // }
-      this.counter += 10;
-      this.dataSD.push(this.violationData.average_violations_sd);
-      this.dataMK.push(this.violationData.average_violations_masks);
-      this.labels.push(this.counter + "s");
-      this.lineChartdata = {
-        labels: this.labels,
-        datasets: [
-          {
-            label: 'Average Social Distancing Violation',
-            backgroundColor: '#4ee352',
-            data: this.dataSD
-          },
-          {
-            label: 'Average Mask Violation',
-            backgroundColor: '#272784',
-            data: this.dataMK
-          },
+      //this.violationData = {
+      //  average_violations_masks: Math.floor((Math.random() * 10) + 1),
+      //  average_violations_sd: Math.floor((Math.random() * 10) + 1),
+      //  current_violations_masks: Math.floor((Math.random() * 10) + 1),
+      //  current_violations_sd: Math.floor((Math.random() * 10) + 1)
+      //}
+       try {
+           let responsess = await axios_py.get('/getViolations')
+           this.violationData= JSON.parse(responsess.data.data);
+           this.counter += 10;
+          this.dataSD.push(this.violationData.average_violations_sd);
+          this.dataMK.push(this.violationData.average_violations_masks);
+          this.labels.push(this.counter + "s");
+          this.lineChartdata = {
+            labels: this.labels,
+            datasets: [
+              {
+                label: 'Average Social Distancing Violation',
+                backgroundColor: '#4ee352',
+                data: this.dataSD
+              },
+              {
+                label: 'Average Mask Violation',
+                backgroundColor: '#272784',
+                data: this.dataMK
+              },
         ]
       }
       console.log(this.lineChartdata);
+       }
+       catch(e) {
+         console.log("errorooror: ", e);
+       }
+      
     },
   },
   async mounted() {
